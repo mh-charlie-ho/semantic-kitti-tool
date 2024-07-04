@@ -34,10 +34,13 @@ def load_bin(path):
     return scan
 
 
-def load_label(path):
+def load_label(path, do_inst=False):
     label = np.fromfile(path, dtype=np.uint32)
     label = label.reshape((-1))
 
     sem_label = label & 0xFFFF  # semantic label in lower half
     inst_label = label >> 16  # instance id in upper half
-    return sem_label.astype(np.float32)
+    if do_inst:
+        return inst_label.astype(np.uint32), sem_label.astype(np.uint32)
+    else:
+        return sem_label.astype(np.float32)

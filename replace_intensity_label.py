@@ -19,8 +19,8 @@ for i in range(len(scans_paths)):
     scan_file = scans_paths[i]
     label_file = labels_paths[i]
     pt = load_file.load_bin(scan_file)
-    label = load_file.load_label(label_file)
-    pt_label = replace_intensity_by_label(pt, label)
+    semiLabel = load_file.load_label(label_file)
+    pt_label = replace_intensity_by_label(pt, semiLabel)
     save_data(pt_label, scan_file)
     print(scan_file)
     print()
